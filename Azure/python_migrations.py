@@ -11,9 +11,18 @@ from sqlalchemy import create_engine, inspect, Column, Integer, String, Date, Fo
 from sqlalchemy.orm import relationship
 from sqlalchemy.ext.declarative import declarative_base
 import os
-#from dotenv import load_dotenv
+from urllib.parse import quote
+from dotenv import load_dotenv
 
-#load_dotenv()
+load_dotenv()
+
+DB_HOST = os.getenv("DB_HOST")
+DB_DATABASE = os.getenv("DB_DATABASE")
+DB_USERNAME = os.getenv("DB_USERNAME")
+DB_PASSWORD = os.getenv("DB_PASSWORD")
+DB_PORT = int(os.getenv("DB_PORT", 3306))
+DB_CHARSET = os.getenv("DB_CHARSET", "utf8mb4")
+
 #print('Here is the ', os.getenv("DB_URL"))
 #databaseURL = os.getenv("DB_URL")
 
@@ -28,6 +37,7 @@ class Patient(Base):
     date_of_birth = Column(Date, nullable=False)
     gender = Column(String(10), nullable=False)
     contact_number = Column(String(100))
+    insurance = Column(String(100), nullable=False)    
     is_alive = Column(String(50), nullable=False)
 
     records = relationship('MedicalRecord', back_populates='patient')
@@ -35,21 +45,35 @@ class Patient(Base):
 class MedicalRecord(Base):
     __tablename__ = 'medical_records'
 
-    id = Column(Integer, primary_key=True)
+    record_id = Column(Integer, primary_key=True)
     patient_id = Column(Integer, ForeignKey('patients.id'), nullable=False)
     diagnosis = Column(String(100), nullable=False)
     treatment = Column(String(200))
     admission_date = Column(Date, nullable=False)
     discharge_date = Column(Date)
-
+    
+    # Ensure that the indentation is correct for the relationship line
     patient = relationship('Patient', back_populates='records')
+
 
 
 ### Part 2 - initial sqlalchemy-engine to connect to db:
 
-engine = create_engine("mysql+pymysql://ang:tza504!!@ang504-migrations.mysql.database.azure.com/ang",
-                         connect_args={'ssl': {'ssl-mode': 'preferred'}},
-                         )
+
+
+# Create the SQLAlchemy engine
+
+
+connect_args={'ssl':{'fake_flag_to_enable_tls': True}}
+
+connection_string = (f'mysql+pymysql://{DB_USERNAME}:{DB_PASSWORD}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}'
+                    f"?charset={DB_CHARSET}")
+
+
+engine = create_engine(
+        connection_string,
+        connect_args=connect_args,
+)
 
 ## Test connection
 
