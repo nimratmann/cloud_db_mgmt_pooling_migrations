@@ -15,10 +15,10 @@ DB_DATABASE = os.getenv("DB_DATABASE")
 DB_USERNAME = os.getenv("DB_USERNAME")
 DB_PASSWORD = os.getenv("DB_PASSWORD")
 DB_PORT = int(os.getenv("DB_PORT", 3306))
-DB_CHARSET = os.getenv("DB_CHARSET", "utf8mb4")
+DB_CHARSET = os.getenv("DB_CHARSET", "utf8mb3")
 
 connect_args = {'ssl': {'fake_flag_to_enable_tls': True}}
-connection_string = (f'mysql+pymysql://{DB_USERNAME}:{quote(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}'
+connection_string = (f'mysql+pymysql://{DB_USERNAME}:{(DB_PASSWORD)}@{DB_HOST}:{DB_PORT}/{DB_DATABASE}'
                      f'?charset={DB_CHARSET}')
 
 # Create the SQLAlchemy engine
