@@ -30,16 +30,17 @@ Run the following command to generate a new migration script:
 alembic revision --autogenerate -m "create tables"
 `
 7. Apply Migrations:
-
 Execute the migration script to apply the changes to the database:
 `
 alembic upgrade head
 `
+
 8. Save Migration SQL Script:
 If you want to save the migration as an SQL script, you can run the following command:
 `
 alembic upgrade head --sql > migration.sql
 `
+
 9. Check Database Changes:
 Verify the changes in your MySQL database. You can use a MySQL client or command-line interface to inspect the tables and confirm that the migrations were applied successfully.
 
