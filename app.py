@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 from pandas import read_sql
 from sqlalchemy import create_engine, text
 
+
 load_dotenv()  # Load environment variables from .env file
 
 # Database connection settings from environment variables
