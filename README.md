@@ -15,11 +15,11 @@ I have defined two classes Patient and MedicalRecord for a relational database s
   - Navigate to server parameters and set max_connections to 20 and connect_timeout to 3.
 
 2. GCP
-   - Locate SQL, initiate the instance creation process, and opt for MySQL.
-   - Generate an instance ID and set a password.
-   - Within the "Choose a Cloud SQL edition" section, select "Enterprise," scroll down, and modify the preset to "Sandbox."
-   - In the "Customize your instance" section, opt for the "shared core" and "1 vCPU, 0.164GB" configuration.
-   - Navigate to the "Connections" tab, and in the "Add a Network" section, set it to "Allow-All" with the IP address range configured as "0.0.0.0/0."
+- Locate SQL, initiate the instance creation process, and opt for MySQL.
+- Generate an instance ID and set a password.
+- Within the "Choose a Cloud SQL edition" section, select "Enterprise," scroll down, and modify the preset to "Sandbox."
+- In the "Customize your instance" section, opt for the "shared core" and "1 vCPU, 0.164GB" configuration.
+- Navigate to the "Connections" tab, and in the "Add a Network" section, set it to "Allow-All" with the IP address range configured as "0.0.0.0/0."
    
 
 ## Migration Process
