@@ -4,6 +4,24 @@ Working with Azure and Google Cloud Platform (GCP) to manage a cloud-based MySQL
 ## Database Schema
 I have defined two classes Patient and MedicalRecord for a relational database schema. The relationships between the tables can be visualized in the Entity-Relationship Diagram (ERD). In the ERD diagram screenshots for both Azure and GCP databases, you can observe the connections between the patients and medical_records tables, both linked to the patient ID number in the patient table.
 
+## Connection Pooling Setup
+1. Azure
+  - Navigate to Azure Database for MySQL and click "Create" under Flexible Server.
+  - Choose an existing Resource Group or create a new one.
+  - Specify a server name and, in the server configuration, adjust the compute size to Standard_B1s (1 vCore, 1 GiB memory, 400 max IOPS).
+  - Define a username and password for the server.
+  - In the networking section, configure public access (allowed IP addresses) and set up a private endpoint.
+  - Under Firewall rules, add rules for both "0.0.0.0 - 255.255.255.255" and the current client's IP address (xx.xxx.xxx.xxx), then create the instance.
+  - Navigate to server parameters and set max_connections to 20 and connect_timeout to 3.
+
+2. GCP
+   - Locate SQL, initiate the instance creation process, and opt for MySQL.
+   - Generate an instance ID and set a password.
+   - Within the "Choose a Cloud SQL edition" section, select "Enterprise," scroll down, and modify the preset to "Sandbox."
+   - In the "Customize your instance" section, opt for the "shared core" and "1 vCPU, 0.164GB" configuration.
+   - Navigate to the "Connections" tab, and in the "Add a Network" section, set it to "Allow-All" with the IP address range configured as "0.0.0.0/0."
+   
+
 ## Migration Process
 To create a MySQL instance in either Azure or GCP and manage database migrations using Alembic, follow these steps:
 
