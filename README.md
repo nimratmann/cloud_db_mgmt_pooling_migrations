@@ -66,3 +66,8 @@ Verify the changes in your MySQL database. You can use a MySQL client or command
 
 ## Challenges Encountered
 The biggest challenge I encountered was connecting my populate.py files with my python_migrations.py file in both GCP and Azure folders. For example, in my Azure folder, I created an azure_populate.py file to generate fake data and populate my MySQL database "mann". However, this fake data did not reflect within my patients and medical records table when I ran my app.py locally using the command `python app.py` in the Google Shell terminal. Despite successfully running the data population script for Azure (azure_populate.py), the changes made to the database, such as inserting fake data into the "patients" and "medical_records" tables, were not reflected when running my application (app.py) locally.
+
+After numerous attempts to troubleshoot, I managed to successfully integrate the populated patients and medical records tables into my Flask application. Following the error-free execution of my azure_populate.py file, I  ran through my app.py file line by line. I realized that I was mistakenly trying to incorporate the python_migrations.py file from my Azure folder. This line was unnecessary. Once I removed it, my app.py file ran smoothly without any issues locally.
+
+
+
